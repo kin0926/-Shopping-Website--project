@@ -1,0 +1,67 @@
+/* 返回顶部 */
+  .back {
+    position: fixed;
+
+    text-align: center;
+    font-size: 16px;
+    right: 30px;
+    bottom: 35px;
+    display: none;
+  }
+
+
+/* 下拉列表 */
+/* .nava li {
+  list-style-type: none;
+} */
+
+.nava a {
+  text-decoration: none;
+  font-size: 12px;
+}
+
+/* .nava {
+  margin: 100px;
+} */
+
+.nava li {
+  position: relative;
+  /* float: left; */
+  width: 80px;
+  height: 31px;
+  text-align: center;
+  z-index: 10;
+  background-color: white;
+}
+
+.nava li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 41px;
+  color: #333;
+  border-left: #eae0e0 1px solid;
+  border-right: #eae0e0 1px solid;
+}
+
+.nava>li>a:hover {
+  background-color: #eee;
+}
+
+.nava ul {
+  display: none;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  border-left: 1px solid #FECC5B;
+  border-right: 1px solid #FECC5B;
+}
+
+.nava ul li {
+  border-bottom: 1px solid #FECC5B;
+}
+
+.nava ul li a:hover {
+  background-color: #FFF5DA;
+}

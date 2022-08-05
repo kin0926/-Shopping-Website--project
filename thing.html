@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>商品详情页</title>
+    <style>
+        /* 图片预览区域 */
+        
+        .preview_img {
+            position: absolute;
+            border: 1px solid #ccc
+        }
+        /* 放大镜 */
+        
+        .mask {
+            display: none;
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            opacity: 0.5;
+            position: absolute;
+        }
+        /* 大图片外部盒子 */
+        
+        .big {
+            display: none;
+            width: 500px;
+            height: 600px;
+            position: absolute;
+            left: 500px;
+            top: -40px;
+            border: 2px solid #ccc;
+            overflow: hidden;
+            margin: -100px 0 0 0px;
+            z-index: 10;
+        }
+        /* 大图片 */
+        
+        .bigIMg {
+            position: absolute;
+        }
+        /* 
+        */
+        
+        .tab {
+            width: 978px;
+            margin: 100px auto;
+        }
+        
+        .tab_list {
+            height: 39px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+        
+        .tab_list .current {
+            background-color: #c81623;
+            color: #fff;
+        }
+    </style>
+    <link rel="stylesheet" href="css/Spinner.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <script></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <!-- 头部信息 -->
+    <div class="header_con">
+        <div class="header">
+            <div class="welcome">欢迎来到品优购!</div>
+            <div class="user_login">
+                <a href="">登录</a>
+                <span>|</span>
+                <a href="">注册</a>
+                <span>|</span>
+                <a href="">我的购物车</a>
+                <span>|</span>
+                <a href="">我的订单</a>
+            </div>
+        </div>
+    </div>
+    <div class="search_bar clearfix">
+        <a href="#" class="logo fl"><img src="img/logo.png" width="100px" height="80px"></a>
+        <div class="search_con fl">
+            <input type="text" class="input_text fl" placeholder="搜索商品">
+            <input type="button" class="input_btn fr" value="搜索">
+        </div>
+        <div class="guest_card fr">
+            <a href="#" class="card_name fl">我的购物车</a>
+            <div class="goods_count fl">1</div>
+        </div>
+    </div>
+    <!-- 商品信息栏 -->
+    <div class="navbar_con">
+        <div class="tab_list">
+            <div class="subnav_con fl">
+                <h1>商城主页<i></i></h1>
+            </div>
+            <ul class="navlist fl">
+                <li><a href="index.html">返回主页</a></li>
+                <li><a href="">商品</a></li>
+                <li><a href="">详情介绍</a></li>
+                <li><a href="">评价</a></li>
+            </ul>
+        </div>
+
+
+        <div class="tab_con">
+            <div class="item" style="display: block;"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+        </div>
+    </div>
+    <div class="submena clearfix">
+        <a href=" ">全部分类</a>
+        <span>></span>
+        <a href=" ">电子商品</a>
+        <span>></span>
+        <a href=" ">商品详情</a>
+    </div>
+
+    <div class="center_con clearfix">
+        <div class="preview_img"><img src="img/phone1.jpg" width="350px" height="350px">
+            <div class="mask"></div>
+            <!-- 展示放大后图片效果 -->
+            <div class="big">
+                <img src="img/phone1.jpg" alt="" class="bigIMg">
+            </div>
+        </div>
+
+
+        <div class="goods_detail_list fr">
+            <h3>飞利浦山寨防水机</h3>
+            <p>可以一起洗澡的超强防水手机噢！！！</p>
+            <div class="prize_bar">
+                <div class="show_prize fl">￥<em>1666.80</em></div>
+            </div>
+            <div class="goods_num clearfix">
+                <div class="num_name fl">数量：</div>
+                <div class="num_add fl">
+                    <input type="text" class="num_show fl" value="1">
+                    <a href="javascript:;" class="add fr">+</a>
+                    <a href="javascript:;" class="minus fr">-</a>
+                </div>
+            </div>
+            <div class="total">总价：<em>1666.80元</em></div>
+            <div class="operate_btn">
+                <a href="" class="buy_btn">立即购买</a>
+                <a href="" class="add_cart">加入购物车</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <script>
+        // 获取元素对象
+        var mask = document.querySelector('.mask');
+        var preview = document.querySelector('.preview_img');
+        var big = document.querySelector('.big');
+        var bigIMg = document.querySelector('.bigIMg');
+        preview.onmouseover = function() {
+                mask.style.display = 'block';
+                big.style.display = 'block';
+            }
+            // 当鼠标移动的时候
+        preview.onmousemove = function(e) {
+            // mask.style.display = 'block'; 注释掉
+            // 获得遮挡层移动距离
+            var maskX = e.clientX - preview.offsetLeft - mask.offsetWidth / 2;
+            var maskY = e.clientY - preview.offsetTop - mask.offsetHeight / 2;
+            // 遮挡层最大移动距离
+            var maskMaxX = preview.offsetWidth - mask.offsetWidth;
+            var maskMaxY = preview.offsetHeight - mask.offsetHeight;
+            // 限制遮挡层的移动范围
+            if (maskX < 0) {
+                maskX = 0;
+            } else if (maskX > maskMaxX) {
+                maskX = maskMaxX;
+            }
+            if (maskY < 0) {
+                maskY = 0;
+            } else if (maskY >= maskMaxY) {
+                maskY = maskMaxY;
+            }
+            // 让放大镜跟随鼠标进行移动
+            mask.style.left = maskX + 'px';
+            mask.style.top = maskY + 'px';
+            // big.style.display = 'block';注释掉
+            // 大图片的最大移动距离
+            var bigIMgXMax = bigIMg.offsetWidth - big.offsetWidth;
+            var bigIMgYMax = bigIMg.offsetHeight - big.offsetHeight;
+            // 大图片的移动距离 = 遮挡层移动距离 * 大图片的最大移动距离 / 遮挡层最大移动距离
+            var bigIMgX = maskX * bigIMgXMax / maskMaxX;
+            var bigIMgY = maskY * bigIMgYMax / maskMaxY;
+            // 大图片移动的距离
+            bigIMg.style.left = -bigIMgX + 'px';
+            bigIMg.style.top = -bigIMgY + 'px';
+        };
+        // 鼠标移出图片关闭放大镜效果
+        preview.onmouseout = function() {
+            big.style.display = 'none';
+            mask.style.display = 'none';
+        };
+        ////////////////////////////////////////////////////////////////
+        // 获取标签部分的所有元素对象
+        var tab_list = document.querySelector('.tab_list');
+        var lis = tab_list.querySelectorAll('li');
+        // 获取内容部分的所有内容对象
+        var items = document.querySelectorAll('.item');
+        for (var i = 0; i < lis.length; i++) { // for循环绑定点击事件
+            lis[i].setAttribute('index', i); // 开始给5个小li设置索引号
+            lis[i].onclick = function() {
+                for (var i = 0; i < lis.length; i++) {
+                    lis[i].className = '';
+                }
+                this.className = 'current';
+                // 下面的显示内容模块
+                var index = this.getAttribute('index');
+                for (var i = 0; i < items.length; i++) {
+                    items[i].style.display = 'none';
+                }
+                items[index].style.display = 'block';
+            };
+        }
+    </script>
+
+</body>
+
+</html>
